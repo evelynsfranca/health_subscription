@@ -1,0 +1,43 @@
+.header {
+  background-color: #1139b0;
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+
+  margin: 0;
+
+  padding: 25px 0;
+}
+
+.navbar {
+  background-color: #f3f3f3;
+
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+
+  padding: 20px 0;
+  text-decoration: none;
+
+  height: 100%;
+  width: 100%;
+}
+
+.link:hover {
+  background-color: #1139b0;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.link.active {
+  background-color: #1139b0;
+  color: #ffffff;
+}
