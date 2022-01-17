@@ -33,3 +33,4 @@ target/
 .vscode/
 
 */node_modules
+*/.next
