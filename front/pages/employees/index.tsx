@@ -41,7 +41,7 @@ export const Employees = () => {
       <table className={style.content}>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>CPF</th>
             <th>Nome</th>
           </tr>
         </thead>
@@ -49,7 +49,7 @@ export const Employees = () => {
           {loading && (<tr>Carregando...</tr>)}
           {employees.map(employee => 
             <tr key={employee.id}>
-              <td>{employee.id}</td>
+              <td>{employee.cpf}</td>
               <td>{employee.name}</td>
             </tr>
           )}
