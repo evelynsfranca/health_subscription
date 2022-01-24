@@ -1,18 +1,24 @@
 package br.com.pipo.service.impl;
 
 import br.com.pipo.model.Client;
+import br.com.pipo.model.Product;
 import br.com.pipo.repository.ClientRepository;
+import br.com.pipo.repository.ProductRepository;
 import br.com.pipo.service.ClientService;
+import br.com.pipo.service.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository clientRepository;
 
-    public ClientServiceImpl(ClientRepository clientRepository) {
+    public ClientServiceImpl(
+        ClientRepository clientRepository
+    ) {
         this.clientRepository = clientRepository;
     }
 
@@ -22,29 +28,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client update(Client client) {
-        return clientRepository.findById(client.getId())
-            .map(it -> {
-                it.setName(client.getName());
-                return it;
-            }).map(clientRepository::save)
-            .orElseThrow(() -> new IllegalArgumentException("Client not found."));
-    }
-
-    @Override
     public Client get(String id) {
         return clientRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Client not found."));
+            .orElseThrow(() -> new NotFoundException("Client not found."));
 }
 
     @Override
     public List<Client> getAll() {
         return clientRepository.findAll();
-    }
-
-    @Override
-    public void delete(String id) {
-        clientRepository.findById(id)
-            .ifPresent(clientRepository::delete);
     }
 }

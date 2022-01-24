@@ -8,11 +8,7 @@ public interface ClientService {
 
     Client save(Client client);
 
-    Client update(Client client);
-
     Client get(String id);
 
     List<Client> getAll();
-
-    void delete(String id);
 }

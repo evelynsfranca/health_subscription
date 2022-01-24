@@ -7,6 +7,7 @@ import br.com.pipo.repository.PartnerRepository;
 import br.com.pipo.repository.ProductCategoryRepository;
 import br.com.pipo.repository.ProductRepository;
 import br.com.pipo.service.ProductService;
+import br.com.pipo.service.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,9 +32,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product save(Product product) {
         ProductCategory category = productCategoryRepository.findById(product.getCategory().getId())
-            .orElseThrow(() -> new IllegalArgumentException("Category not found."));
+            .orElseThrow(() -> new NotFoundException("Category not found."));
         Partner partner = partnerRepository.findById(product.getPartner().getId())
-            .orElseThrow(() -> new IllegalArgumentException("Partner not found."));
+            .orElseThrow(() -> new NotFoundException("Partner not found."));
 
         product.setCategory(category);
         product.setPartner(partner);
@@ -42,27 +43,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product update(Product product) {
-
-        ProductCategory category = productCategoryRepository.findById(product.getCategory().getId())
-            .orElseThrow(() -> new IllegalArgumentException("Category not found."));
-        Partner partner = partnerRepository.findById(product.getPartner().getId())
-                .orElseThrow(() -> new IllegalArgumentException("Partner not found."));
-
-        return productRepository.findById(product.getId())
-            .map(it -> {
-                it.setName(product.getName());
-                it.setCategory(category);
-                it.setPartner(partner);
-                return it;
-            }).map(productRepository::save)
-            .orElseThrow(() -> new IllegalArgumentException("Product not found."));
-    }
-
-    @Override
     public Product get(String id) {
         return productRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Product not found."));
+            .orElseThrow(() -> new NotFoundException("Product not found."));
     }
 
     @Override
@@ -71,8 +54,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void delete(String id) {
-        productRepository.findById(id)
-            .ifPresent(productRepository::delete);
+    public List<Product> getAllByClientId(String clientId) {
+        return productRepository.findAllByClientId(clientId);
     }
 }

@@ -22,16 +22,6 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     }
 
     @Override
-    public ProductCategory update(ProductCategory category) {
-        return productCategoryRepository.findById(category.getId())
-            .map(it -> {
-                it.setName(category.getName());
-                return it;
-            }).map(productCategoryRepository::save)
-            .orElseThrow(() -> new IllegalArgumentException("Category not found."));
-    }
-
-    @Override
     public ProductCategory get(String id) {
         return productCategoryRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Category not found."));
@@ -42,9 +32,4 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         return productCategoryRepository.findAll();
     }
 
-    @Override
-    public void delete(String id) {
-        productCategoryRepository.findById(id)
-            .ifPresent(productCategoryRepository::delete);
-    }
 }
