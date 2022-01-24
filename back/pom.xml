@@ -43,6 +43,43 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!--    Mapstruct    -->
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.4.2.Final</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.4.2.Final</version>
+        </dependency>
+
+        <!--   Javax     -->
+        <!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>2.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+
+        <!--   Apache commons lang     -->
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

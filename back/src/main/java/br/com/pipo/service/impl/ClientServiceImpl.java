@@ -1,15 +1,12 @@
 package br.com.pipo.service.impl;
 
 import br.com.pipo.model.Client;
-import br.com.pipo.model.Product;
 import br.com.pipo.repository.ClientRepository;
-import br.com.pipo.repository.ProductRepository;
 import br.com.pipo.service.ClientService;
 import br.com.pipo.service.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ClientServiceImpl implements ClientService {
