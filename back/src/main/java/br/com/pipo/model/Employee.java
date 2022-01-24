@@ -32,6 +32,9 @@ public class Employee implements Serializable {
     private BigDecimal meditationHours;
 
     @DBRef
+    private Address address;
+
+    @DBRef
     private Client client;
 
     @DBRef
