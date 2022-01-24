@@ -9,6 +9,7 @@ export interface SelectInputProps<T> {
   values: T[];
   name: string;
   onChange: (event: SetStateAction<T>) => void;
+  validation?: string | boolean;
 }
 
 export const SelectInput = (props: SelectInputProps<any>) => {
@@ -36,6 +37,9 @@ export const SelectInput = (props: SelectInputProps<any>) => {
             </option>
         ))}
       </select>
+      {typeof props?.validation === 'string'
+        && (<span className={style.validationText}>{props?.validation}</span>)
+      }
     </div>
   );
 }

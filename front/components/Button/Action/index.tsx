@@ -10,6 +10,7 @@ export const ActionButton = (props: ActionButtonProps) => {
     <button
       onClick={props.onAction} 
       className={style.button}
+      type='button'
     >
       {props.text}
     </button>

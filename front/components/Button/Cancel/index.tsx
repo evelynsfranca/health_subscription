@@ -10,6 +10,7 @@ export const CancelButton = (props: CancelButtonProps) => {
     <button
       onClick={props.onCancel} 
       className={style.button}
+      type='button'
     >
       {props.text}
     </button>
