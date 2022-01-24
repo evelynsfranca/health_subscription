@@ -31,12 +31,6 @@ public class ProductCategoryController {
         return new ResponseEntity(result, HttpStatus.CREATED);
     }
 
-    @PutMapping
-    private ResponseEntity<ProductCategory> update(@RequestBody ProductCategory category) {
-        ProductCategory result = productCategoryService.update(category);
-        return new ResponseEntity(result, HttpStatus.CREATED);
-    }
-
     @GetMapping("/{id}")
     private ResponseEntity<ProductCategory> get(@PathVariable String id) {
         ProductCategory result = productCategoryService.get(id);
@@ -47,11 +41,5 @@ public class ProductCategoryController {
     private ResponseEntity<List<ProductCategory>> getAll() {
         List<ProductCategory> result = productCategoryService.getAll();
         return new ResponseEntity(result, HttpStatus.OK);
-    }
-
-    @DeleteMapping("/{id}")
-    private ResponseEntity<Void> delete(@PathVariable String id) {
-        productCategoryService.delete(id);
-        return new ResponseEntity(ResponseEntity.noContent(), HttpStatus.OK);
     }
 }
