@@ -1,5 +1,6 @@
 package br.com.pipo.model;
 
+import br.com.pipo.model.enumeration.ProductCategoryType;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -17,8 +18,7 @@ public class Product implements Serializable {
 
     private String name;
 
-    @DBRef
-    private ProductCategory category;
+    private ProductCategoryType category;
 
     @DBRef
     private Partner partner;

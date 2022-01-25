@@ -12,6 +12,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = { ClientMapper.class, PartnerMapper.class })
 public interface ProductMapper {
 
+    @Mapping(source = "partner", target = "partner")
     Product toCreateEntity(ProductToCreateDTO dto);
 
     ProductToSimpleDTO toSimṕleDto(Product entity);
