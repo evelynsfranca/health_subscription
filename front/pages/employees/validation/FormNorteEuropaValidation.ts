@@ -12,3 +12,4 @@ export const validateFormNorteEuropa = (employee: Employee) =>
     && validateEmail(employee?.email) === true
     && validateAdmissionDate(employee?.admissionDate) === true
 ;
+export default validateFormNorteEuropa;

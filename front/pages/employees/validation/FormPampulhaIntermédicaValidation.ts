@@ -21,3 +21,5 @@ export const validateFormPampulhaIntermédica = (employee: Employee) =>
     && validateCity(employee?.address.city) === true
     && validateState(employee?.address.state) === true
 ;
+
+export default validateFormPampulhaIntermédica;

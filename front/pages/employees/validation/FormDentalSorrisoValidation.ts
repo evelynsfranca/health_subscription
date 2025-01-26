@@ -12,3 +12,5 @@ export const validateFormDentalSorriso = (employee: Employee) =>
     && validateHeight(employee?.height) === true
     && validateWeight(employee?.weight) === true
 ;
+
+export default validateFormDentalSorriso;
