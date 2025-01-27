@@ -17,3 +17,5 @@ export const validateForms = (employee: Employee, partners?: string[]): boolean 
 
   return true;
 }
+
+export default validateForms;
