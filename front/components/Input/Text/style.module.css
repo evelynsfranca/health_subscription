@@ -1,37 +1,37 @@
 .field {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
-  width: 100%;
+    width: 100%;
 }
 
 .label {
-  font-size: 0.875rem;
-  margin-bottom: 5px;
+    font-size: 0.875rem;
+    margin-bottom: 5px;
 }
 
 .input {
-  background-color: #ffffff;
-  border: 0;
-  border-radius: 6px;
-  color: #000000;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  opacity: 0.9;
-  outline: 0;
-  padding: 10px;
-  height: min-content;
+    background-color: #ffffff;
+    border: 0;
+    border-radius: 6px;
+    color: #000000;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    outline: 0;
+    padding: 10px;
+    height: min-content;
 }
 
 .input {
-  cursor: pointer;
-  opacity: 1;
-  transition: 0.3s;
+    cursor: pointer;
+    opacity: 1;
+    transition: 0.3s;
 }
 
 .validationText {
-  color: #d40000;
-  font-size: 0.875rem;
+    color: #d40000;
+    font-size: 0.875rem;
 }

@@ -7,9 +7,12 @@ export interface LinkButtonProps {
 }
 
 export const LinkButton = (props: LinkButtonProps) => {
+
+  const { text, to } = props;
+
   return (
-    <Link href={props.to}>
-      <div className={style.button}>{props.text}</div>
+    <Link href={to}>
+      <div className={style.button}>{text}</div>
     </Link>
   );
 }

@@ -6,13 +6,16 @@ export interface CancelButtonProps {
 }
 
 export const CancelButton = (props: CancelButtonProps) => {
+
+  const { text, onCancel } = props;
+
   return (
     <button
-      onClick={props.onCancel} 
+      onClick={onCancel}
       className={style.button}
       type='button'
     >
-      {props.text}
+      {text}
     </button>
   );
 }

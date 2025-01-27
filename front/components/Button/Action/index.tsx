@@ -6,13 +6,16 @@ export interface ActionButtonProps {
 }
 
 export const ActionButton = (props: ActionButtonProps) => {
+
+  const { text, onAction } = props;
+
   return (
     <button
-      onClick={props.onAction} 
+      onClick={onAction}
       className={style.button}
       type='button'
     >
-      {props.text}
+      {text}
     </button>
   );
 }

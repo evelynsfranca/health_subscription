@@ -10,23 +10,30 @@ export interface TextInputProps {
 }
 
 export const TextInput = (props: TextInputProps) => {
+
+  const { id, label, value, onChange, validation } = props;
+
   return (
     <div className={style.field}>
-      <label htmlFor={props.id} className={style.label}>
-        {props.label}
+
+      <label
+        htmlFor={id}
+        className={style.label}
+      >
+        {label}
       </label>
 
-      <input 
-        id={props.id}
+      <input
+        id={id}
         className={style.input}
-        type="text" 
-        value={props.value} 
-        onChange={event => props.onChange(event.target.value)}
+        type="text"
+        value={value}
+        onChange={event => onChange(event.target.value)}
       />
 
-      {typeof props?.validation === 'string'
-        && (<span className={style.validationText}>{props?.validation}</span>)
-      }
+      {typeof validation === 'string' && (
+        <span className={style.validationText}>{validation}</span>
+      )}
     </div>
   );
 }
