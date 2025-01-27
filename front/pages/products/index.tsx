@@ -11,7 +11,7 @@ export const Products = () => {
 
   async function handleGetAllProducts() {
     setLoading(true)
-    
+
     const response: ApiResponse<Product[]> = await getAllProducts();
 
     if (response.entity) {
@@ -20,37 +20,42 @@ export const Products = () => {
       return <div>failed to load</div>
     }
 
-    if(response.status === 200) setLoading(false);
+    if (response.status === 200) setLoading(false);
   }
-  
+
   useEffect(() => {
     handleGetAllProducts();
   }, []);
 
   return (
     <main className={style.container}>
+
       <header className={style.header}>
         <h2>Produtos</h2>
       </header>
 
       <table className={style.content}>
+
         <thead>
           <tr>
             <th>ID</th>
             <th>Nome</th>
           </tr>
         </thead>
+
         <tbody>
           {loading && (<tr>Carregando...</tr>)}
-          {products.map(product => 
+
+          {products.map(product =>
             <tr key={product.id} className={style.item}>
-              <td>{product.id}</td>
-              <td>{product.name}</td>
+              <td><span>{product.id}</span></td>
+              <td><span>{product.name.replaceAll("_", " ").toLowerCase()}</span></td>
             </tr>
           )}
         </tbody>
+
       </table>
-    </main>  
+    </main>
   )
 
 }

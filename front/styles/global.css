@@ -1,54 +1,125 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 
+* {
+    box-sizing: border-box;
+    font-family: var(--font-default);
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
 body {
-  box-sizing: border-box;
+    box-sizing: border-box;
 
-  font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 
-  height: 100vh;
-  max-height: 100vh;
-  width: 100vw;
-  max-width: 100vw;
+    height: 100vh;
+    width: 100vw;
 }
 
 #__next {
-  box-sizing: border-box;
+    box-sizing: border-box;
 
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    width: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+}
+
+main > header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    width: 100%;
 }
 
 table {
-  border-spacing: 0;
+    border-spacing: 0;
+
+    background-color: #eeeeee;
+    border-radius: 6px;
+
+    max-width: 800px;
+    width: 100%;
+
+    padding: 15px;
+    text-align: left;
 }
 
 tbody > tr {
-  border-radius: 3px;
+    border-radius: 3px;
 }
 
 tbody > tr:hover {
-  background-color: #e0e0e0;
-  cursor: pointer;
+    background-color: #e0e0e0;
+    cursor: pointer;
 }
 
 th {
-  padding: 0 0 10px;
+    padding: 0 0 10px;
 }
 
 td {
-  padding: 5px;
+    padding: 5px;
+}
+
+th,
+td {
+    text-transform: capitalize;
+    padding: 0.5rem 1rem;
 }
 
 th:first-child,
 td:first-child {
-  width: 40%;
+    width: 15%;
 }
 
 th:last-child,
 td:last-child {
-  width: 60%;
+    width: 100%;
+}
+
+th:first-child,
+td:first-child {
+    max-width: 5vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 640px) {
+  
+    nav > div {
+        font-size: 0.875rem;
+    }
+
+    main > header {
+        padding: 0 2rem;
+    }
+
+    table {
+        width: 90%;
+    }
+
+    th:first-child,
+    td:first-child {
+        display: none;
+    }
 }

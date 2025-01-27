@@ -11,7 +11,7 @@ export const Partners = () => {
 
   async function handleGetAllPartners() {
     setLoading(true)
-    
+
     const response: ApiResponse<Partner[]> = await getAllPartners();
 
     if (response.entity) {
@@ -20,37 +20,42 @@ export const Partners = () => {
       return <div>failed to load</div>
     }
 
-    if(response.status === 200) setLoading(false);
+    if (response.status === 200) setLoading(false);
   }
-  
+
   useEffect(() => {
     handleGetAllPartners();
   }, []);
 
   return (
     <main className={style.container}>
+
       <header className={style.header}>
         <h2>Parceiros</h2>
       </header>
 
       <table className={style.content}>
+
         <thead>
           <tr>
             <th>ID</th>
             <th>Nome</th>
           </tr>
         </thead>
+
         <tbody>
           {loading && (<tr>Carregando...</tr>)}
-          {partners.map(partner => 
+
+          {partners.map(partner =>
             <tr key={partner.id} className={style.item}>
-              <td>{partner.id}</td>
-              <td>{partner.name}</td>
+              <td><span>{partner.id}</span></td>
+              <td><span><span>{partner.name.replaceAll("_", " ").toLowerCase()}</span></span></td>
             </tr>
           )}
         </tbody>
+
       </table>
-    </main>  
+    </main>
   )
 
 }

@@ -11,7 +11,7 @@ export const GeneralLayout = ({ children }) => {
   const [currentRoute, setCurrentRoute] = useState<string>("");
 
   useEffect(() => {
-    if(router.pathname != currentRoute) {
+    if (router.pathname != currentRoute) {
       setCurrentRoute(router.pathname);
     }
   }, [router.pathname]);
@@ -26,9 +26,10 @@ export const GeneralLayout = ({ children }) => {
           {currentRoute.startsWith('/employees') ? 'Funcionários ' : ''}
           {currentRoute.startsWith('/partners') ? 'Parceiros' : ''}
 
-          - Pipo Saúde
+          - Health Subscription
         </title>
       </Head>
+
       <div className={style.page}>
         <Menu currentRoute={currentRoute} />
         {children}

@@ -11,23 +11,40 @@ export interface CheckboxInputProps {
 }
 
 export const CheckboxInput = (props: CheckboxInputProps) => {
+
+  const { id, label, checked, value, onChange, validation } = props;
+
   return (
     <div className={style.field}>
+
       <div className={style.container}>
-        <label htmlFor={props.id} className={style.label}>{props.label}</label>
-        <input 
-          id={props.id} 
-          className={style.input}
-          type="checkbox" 
-          value={props.value} 
-          checked={props.checked}
-          onChange={props.onChange} 
-        />
-        <span className={style.checkmark}></span>
+
+        <label
+          htmlFor={id}
+          className={style.label}
+        >
+          <span>{label}</span>
+
+          <input
+            id={id}
+            className={style.input}
+            type="checkbox"
+            value={value}
+            checked={checked}
+            onChange={onChange}
+          />
+
+          <span className={style.checkmark} />
+
+        </label>
+
       </div>
-      {typeof props?.validation === 'string'
-        && (<span className={style.validationText}>{props?.validation}</span>)
-      }
+
+      {typeof validation === 'string' && (
+        <span className={style.validationText}>
+          {validation}
+        </span>
+      )}
     </div>
   );
 }

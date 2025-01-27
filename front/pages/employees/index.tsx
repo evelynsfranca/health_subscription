@@ -12,7 +12,7 @@ export const Employees = () => {
 
   async function handleGetAllEmployees() {
     setLoading(true)
-    
+
     const response: ApiResponse<Employee[]> = await getAllEmployees();
 
     if (response.entity) {
@@ -21,41 +21,49 @@ export const Employees = () => {
       return <div>failed to load</div>
     }
 
-    if(response.status === 200) setLoading(false);
+    if (response.status === 200) setLoading(false);
   }
-  
+
   useEffect(() => {
     handleGetAllEmployees();
   }, []);
 
   return (
     <main className={style.container}>
+
       <header className={style.header}>
+
         <h2>Funcionários</h2>
-        <LinkButton 
+
+        <LinkButton
           to="/employees/new"
           text="ADICIONAR"
         />
+
       </header>
 
       <table className={style.content}>
+
         <thead>
           <tr>
             <th>CPF</th>
             <th>Nome</th>
           </tr>
         </thead>
+
         <tbody>
           {loading && (<tr>Carregando...</tr>)}
-          {employees.map(employee => 
+
+          {employees.map(employee =>
             <tr key={employee.id}>
-              <td>{employee.cpf}</td>
-              <td>{employee.name}</td>
+              <td><span>{employee.cpf}</span></td>
+              <td><span>{employee.name}</span></td>
             </tr>
           )}
         </tbody>
+
       </table>
-    </main>  
+    </main>
   )
 
 }

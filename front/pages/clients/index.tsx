@@ -10,8 +10,9 @@ export const Clients = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   async function handleGetAllClients() {
-    setLoading(true)
     
+    setLoading(true)
+
     const response: ApiResponse<Client[]> = await getAllClients();
 
     if (response.entity) {
@@ -20,37 +21,42 @@ export const Clients = () => {
       return <div>failed to load</div>
     }
 
-    if(response.status === 200) setLoading(false);
+    if (response.status === 200) setLoading(false);
   }
-  
+
   useEffect(() => {
-      handleGetAllClients();
+    handleGetAllClients();
   }, []);
 
   return (
     <main className={style.container}>
+
       <header className={style.header}>
         <h2>Clientes</h2>
       </header>
 
       <table className={style.content}>
+
         <thead>
           <tr>
             <th>ID</th>
             <th>Nome</th>
           </tr>
         </thead>
+
         <tbody>
           {loading && (<tr>Carregando...</tr>)}
-          {clients.map(client => 
-            <tr key={client.id} >
-              <td>{client.id}</td>
-              <td>{client.name}</td>
+
+          {clients.map(client =>
+            <tr key={client.id}>
+              <td><span>{client.id}</span></td>
+              <td><span>{client.name}</span></td>
             </tr>
           )}
         </tbody>
+
       </table>
-    </main>  
+    </main>
   )
 
 }

@@ -16,6 +16,7 @@ import { Product } from '../../model/Product';
 import { validateClient, validateCpf, validateProduct } from '../../utils/FormEmployeeValidation';
 import FormManager from './components/form';
 import style from './style.module.css';
+import validateForms from './validation';
 
 export const NewEmployee = () => {
 
@@ -38,52 +39,52 @@ export const NewEmployee = () => {
     setProducts(client?.products)
   }
 
-  const handleProducts = (id: string) => {    
+  const handleProducts = (id: string) => {
     const product: Product = employee?.client?.products?.find(it => it.id == id);
-    
+
     employee?.products?.map(it => it.id).includes(id)
       ? setEmployee({ ...employee, products: employee?.products?.filter((item) => item.id !== id) })
-      : setEmployee({ ...employee, products: [...employee?.products, product ]  })
+      : setEmployee({ ...employee, products: [...employee?.products, product] })
   }
 
   async function handleGetAllClients() {
     setLoading(true)
-    
+
     const response: ApiResponse<Client[]> = await getAllClients();
-    
-    response.entity 
-      ? setClients(response.entity) 
+
+    response.entity
+      ? setClients(response.entity)
       : (<div>failed to load</div>)
 
     response.status === 200 && setLoading(false);
   }
 
-  async function handleSaveEmployee() {    
-    // if (!validateForms(employee, partners)) {
-    //   setShowValidation(true);
-    //   return;
-    // } 
-    
+  async function handleSaveEmployee() {
+    if (!validateForms(employee, partners)) {
+      setShowValidation(true);
+      return;
+    }
+
     setLoading(true)
-    
+
     const response: ApiResponse<Employee> = await saveEmployee(employee);
 
     response.entity ? setEmployee(response.entity) : (<div>failed to load</div>)
-    
+
     if (response.status === 201) {
-       router.back();
+      router.back();
     }
     setLoading(false);
   }
-  
-  React.useEffect(() => { 
-    handleGetAllClients() 
+
+  React.useEffect(() => {
+    handleGetAllClients()
     setEmployee({ products: [], client: {} })
   }, []);
 
   React.useEffect(() => { showValidation && setShowValidation(false) }, [employee]);
-  
-  
+
+
   React.useEffect(() => {
     setPartners(employee?.products?.map(it => it?.partner?.name));
   }, [employee?.products]);
@@ -92,18 +93,19 @@ export const NewEmployee = () => {
 
   return (
     <main className={style.container}>
+
       <header className={style.header}>
         <h2>Funcionários</h2>
       </header>
 
       {loading && <>loading</>}
-      
+
       <form className={style.form}>
         <TextInput
-          id="cpf" 
+          id="cpf"
           label="CPF"
-          value={employee?.cpf} 
-          onChange={cpf => setEmployee(it => ({...it, cpf }))}
+          value={employee?.cpf}
+          onChange={cpf => setEmployee(it => ({ ...it, cpf }))}
           validation={showValidation ? validateCpf(employee?.cpf) : ''}
         />
 
@@ -117,42 +119,50 @@ export const NewEmployee = () => {
           defaultValue={employee?.client?.id}
           validation={showValidation ? validateClient(employee?.client?.id) : ''}
         />
+
         <div>
           {products?.length > 0
             && products?.map(product => (
               <CheckboxInput
-                id={product.id} 
-                label={product.name} 
-                value={product.id} 
+                id={product.id}
+                label={product.name.replaceAll("_", " ").toLowerCase()}
+                value={product.id}
                 checked={checkedProduct(product.id)}
                 onChange={event => handleProducts(event.target.value)}
                 key={product.id}
               />
             ))
           }
-          {showValidation && typeof validateProduct(employee?.products) == 'string'
-            && (<span className={style.validationText}>{validateProduct(employee?.products)}</span>)}
+
+          {showValidation
+            && typeof validateProduct(employee?.products) == 'string'
+            && (
+              <span className={style.validationText}>
+                {validateProduct(employee?.products)}
+              </span>
+            )}
         </div>
 
-        <FormManager 
-          employee={employee} 
-          handleChange={setEmployee} 
-          partnersName={partners} 
+        <FormManager
+          employee={employee}
+          handleChange={setEmployee}
+          partnersName={partners}
           showValidation={showValidation}
         />
 
         <footer className={style.footer}>
-          <CancelButton 
+          <CancelButton
             text="CANCELAR"
             onCancel={() => router.back()}
           />
-          <ActionButton 
+
+          <ActionButton
             text="SALVAR"
             onAction={handleSaveEmployee}
           />
         </footer>
       </form>
-    </main>  
+    </main>
   )
 
 }
