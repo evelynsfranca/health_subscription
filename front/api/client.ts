@@ -1,4 +1,4 @@
-import { API_URL } from "../constants";
+import { API_TOKEN, API_URL } from "../constants";
 import { ApiResponse } from "../model/ApiResponse";
 import { Client } from "../model/Client";
 
@@ -9,7 +9,8 @@ export const saveClient = async (client: Client): Promise<ApiResponse<Client>> =
   const res = await fetch(`${API_URL}/clients`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": API_TOKEN
     },
     body: JSON.stringify(client)
   })
@@ -31,7 +32,8 @@ export const updateClient = async (client: Client): Promise<ApiResponse<Client>>
   const res = await fetch(`${API_URL}/clients`, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": API_TOKEN
     },
     body: JSON.stringify(client)
   })
@@ -53,7 +55,8 @@ export const getClient = async (id: String): Promise<ApiResponse<Client>> => {
   const res = await fetch(`${API_URL}/clients/${id}`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": API_TOKEN
     }
   })
     .then(res => {
@@ -74,7 +77,8 @@ export const getAllClients = async (): Promise<ApiResponse<Client[]>> => {
   const res = await fetch(`${API_URL}/clients`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": API_TOKEN
     }
   })
     .then(res => {
@@ -95,7 +99,8 @@ export const deleteClient = async (id: String): Promise<ApiResponse<Client>> => 
   const res = await fetch(`${API_URL}/clients/${id}`, {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": API_TOKEN
     }
   })
     .then(res => {

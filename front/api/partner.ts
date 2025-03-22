@@ -1,15 +1,16 @@
-import { API_URL } from "../constants";
+import { API_TOKEN, API_URL } from "../constants";
 import { ApiResponse } from "../model/ApiResponse";
 import { Partner } from "../model/Partner";
 
 export const savePartner = async (partner: Partner): Promise<ApiResponse<Partner>> => {
-  
+
   const apiResponse: ApiResponse<Partner> = {}
 
   const res = await fetch(`${API_URL}/partners`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": API_TOKEN
     },
     body: JSON.stringify(partner)
   })
@@ -19,19 +20,20 @@ export const savePartner = async (partner: Partner): Promise<ApiResponse<Partner
     })
     .catch(e => console.warn(e));
 
-    apiResponse.entity = res;
+  apiResponse.entity = res;
 
   return apiResponse;
 }
 
 export const updatePartner = async (partner: Partner): Promise<ApiResponse<Partner>> => {
-  
+
   const apiResponse: ApiResponse<Partner> = {}
 
   const res = await fetch(`${API_URL}/partners`, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": API_TOKEN
     },
     body: JSON.stringify(partner)
   })
@@ -41,19 +43,20 @@ export const updatePartner = async (partner: Partner): Promise<ApiResponse<Partn
     })
     .catch(e => console.warn(e));
 
-    apiResponse.entity = res;
+  apiResponse.entity = res;
 
   return apiResponse;
 }
 
 export const getPartner = async (id: String): Promise<ApiResponse<Partner>> => {
-  
+
   const apiResponse: ApiResponse<Partner> = {}
 
   const res = await fetch(`${API_URL}/partners/${id}`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": API_TOKEN
     }
   })
     .then(res => {
@@ -62,19 +65,20 @@ export const getPartner = async (id: String): Promise<ApiResponse<Partner>> => {
     })
     .catch(e => console.warn(e));
 
-    apiResponse.entity = res;
+  apiResponse.entity = res;
 
   return apiResponse;
 }
 
 export const getAllPartners = async (): Promise<ApiResponse<Partner[]>> => {
-  
+
   const apiResponse: ApiResponse<Partner[]> = {}
 
   const res = await fetch(`${API_URL}/partners`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": API_TOKEN
     }
   })
     .then(res => {
@@ -83,19 +87,20 @@ export const getAllPartners = async (): Promise<ApiResponse<Partner[]>> => {
     })
     .catch(e => console.warn(e));
 
-    apiResponse.entity = res;
+  apiResponse.entity = res;
 
   return apiResponse;
 }
 
 export const deletePartner = async (id: String): Promise<ApiResponse<Partner>> => {
-  
+
   const apiResponse: ApiResponse<Partner> = {}
 
   const res = await fetch(`${API_URL}/partners/${id}`, {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": API_TOKEN
     }
   })
     .then(res => {
@@ -104,7 +109,7 @@ export const deletePartner = async (id: String): Promise<ApiResponse<Partner>> =
     })
     .catch(e => console.warn(e));
 
-    apiResponse.entity = res;
+  apiResponse.entity = res;
 
   return apiResponse;
 }
